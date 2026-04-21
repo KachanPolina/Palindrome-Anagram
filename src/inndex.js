@@ -43,30 +43,26 @@ console.log(isAnagramSimple('ArT        ', '         Rat'));
 console.log(isAnagramSimple('Hello', 'Sea'));
 
 // Anagram (hard)
+function bubbleSort(arr) {
+    for(let i= 0; i < arr.length; i++) {
+        for(let j = 0; j < arr.length; j++) {
+            if (arr[j] > arr[j + 1]) {
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
 function isAnagramHard(string1, string2) {
     const string1LowerCase = string1.toLowerCase().replace(/ /g, ''); 
     const string2LowerCase = string2.toLowerCase().replace(/ /g, ''); 
     if (string1LowerCase.length === string2LowerCase.length) { 
         const arr1 = [...string1LowerCase];
         const arr2 = [...string2LowerCase];
-        for(let i= 0; i < arr1.length; i++) {
-            for(let j = 0; j < arr1.length; j++) {
-                if (arr1[j] > arr1[j + 1]) {
-                    let temp = arr1[j];
-                    arr1[j] = arr1[j + 1];
-                    arr1[j + 1] = temp;
-                }
-            }
-        }
-        for(let i= 0; i < arr2.length; i++) {
-            for(let j = 0; j < arr2.length; j++) {
-                if (arr2[j] > arr2[j + 1]) {
-                    let temp = arr2[j];
-                    arr2[j] = arr2[j + 1];
-                    arr2[j + 1] = temp;
-                }
-            }
-        }
+        bubbleSort(arr1);
+        bubbleSort(arr2);
         for(let i = 0; i < arr1.length; i++) {
             if (arr1[i] !== arr2[i]) return false;
         }
@@ -77,6 +73,7 @@ function isAnagramHard(string1, string2) {
 
 console.log('isAnagramHard')
 console.log(isAnagramHard('ArT        ', '         Rat'));
+console.log(isAnagramHard('ArT        ', '         hat'));
 console.log(isAnagramHard('Hello', 'Sea'));
 
         
